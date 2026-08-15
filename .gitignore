@@ -1,0 +1,8 @@
+.build/
+.swiftpm/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+build/dmg/
+build/icon.iconset/
+.DS_Store
