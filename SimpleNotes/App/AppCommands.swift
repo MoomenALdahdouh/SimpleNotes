@@ -112,6 +112,10 @@ struct AppCommands: Commands {
             Button("Simple Notes Help") {
                 openWindow(id: "about")
             }
+            Divider()
+            Button("Buy Me a Coffee") {
+                SupportLinks.openKoFi()
+            }
         }
     }
 }

@@ -26,6 +26,7 @@ APP_SOURCES = [
     "SimpleNotes/App/AppCommands.swift",
     "SimpleNotes/App/DocumentSession.swift",
     "SimpleNotes/App/FontSizes.swift",
+    "SimpleNotes/App/SupportLinks.swift",
     "SimpleNotes/Views/ContentView.swift",
     "SimpleNotes/Views/StatusBarView.swift",
     "SimpleNotes/Views/AboutView.swift",

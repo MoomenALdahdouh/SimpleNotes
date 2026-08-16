@@ -27,7 +27,7 @@ struct SimpleNotesApp: App {
             AboutView()
         }
         .windowResizability(.contentSize)
-        .defaultSize(width: 360, height: 240)
+        .defaultSize(width: 360, height: 268)
         .windowStyle(.hiddenTitleBar)
     }
 }

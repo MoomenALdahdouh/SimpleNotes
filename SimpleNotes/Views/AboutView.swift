@@ -36,10 +36,20 @@ struct AboutView: View {
                 .font(.callout)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
+
+            Button(action: SupportLinks.openKoFi) {
+                Label("Buy me a coffee", systemImage: "cup.and.saucer")
+                    .font(.caption)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(.secondary)
+            .padding(.top, 6)
+            .help("Open Ko-fi")
+            .accessibilityLabel("Buy me a coffee")
         }
         .padding(.horizontal, 40)
         .padding(.top, 36)
-        .padding(.bottom, 32)
+        .padding(.bottom, 28)
         .frame(width: 360)
         .background(.windowBackground)
     }

@@ -47,6 +47,12 @@ Launch the app and start typing.
 
 Files save as UTF-8 **Plain Text (`.txt`)** or **Markdown (`.md`)**. Markdown is edited as source, not previewed. The first save suggests a timestamp name such as `2026-08-16_13-47-00.txt`.
 
+## Support
+
+If Simple Notes is useful, you can [buy me a coffee](https://ko-fi.com/moomenaldahdouh).
+
+[![Buy Me a Coffee at ko-fi.com](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/moomenaldahdouh)
+
 ## Privacy
 
 Everything stays on your Mac. Simple Notes does not use the internet, analytics, accounts, or cloud sync.
