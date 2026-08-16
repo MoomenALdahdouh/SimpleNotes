@@ -1,46 +1,41 @@
 <div align="center">
 
+<img src="docs/icon.png" alt="Simple Notes" width="96">
+
 # Simple Notes
 
-A native macOS text editor. Open, type, save.
+Native macOS text editor. Open, type, save.
 
-[![macOS](https://img.shields.io/badge/macOS-14%2B-000000?logo=apple&logoColor=white)](https://github.com/MoomenALdahdouh/SimpleNotes/releases/latest)
-[![Swift](https://img.shields.io/badge/Swift-6-F05138?logo=swift&logoColor=white)](https://www.swift.org)
-[![Release](https://img.shields.io/github/v/release/MoomenALdahdouh/SimpleNotes)](https://github.com/MoomenALdahdouh/SimpleNotes/releases/latest)
-[![License](https://img.shields.io/github/license/MoomenALdahdouh/SimpleNotes)](LICENSE)
-
-[Download](https://github.com/MoomenALdahdouh/SimpleNotes/releases/latest) · [Ko-fi](https://ko-fi.com/moomenaldahdouh)
-
-<img src="docs/window.png" alt="Simple Notes main window" width="760">
+[![build](https://img.shields.io/github/actions/workflow/status/MoomenALdahdouh/SimpleNotes/ci.yml?label=build)](https://github.com/MoomenALdahdouh/SimpleNotes/actions)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![release](https://img.shields.io/github/v/release/MoomenALdahdouh/SimpleNotes?label=release)](https://github.com/MoomenALdahdouh/SimpleNotes/releases/latest)
+[![macOS](https://img.shields.io/badge/macOS-14%2B-black)](https://github.com/MoomenALdahdouh/SimpleNotes/releases/latest)
+[![arch](https://img.shields.io/badge/arch-arm64-lightgrey)](https://github.com/MoomenALdahdouh/SimpleNotes/releases/latest)
 
 </div>
 
+---
+
 ## Overview
 
-Simple Notes is a local, distraction-free editor for `.txt` and `.md` files. Launch it and start typing. Files stay on your Mac — no account, no cloud, no network.
+Simple Notes is a distraction-free editor for `.txt` and `.md` files, built with Swift, SwiftUI, and AppKit. It opens into a blank `NSTextView` so you can type immediately. Arabic, English, Turkish, mixed RTL/LTR, and other Unicode text use macOS layout. No accounts, ads, telemetry, or network requirement at runtime.
 
-It uses a native `NSTextView`, so Arabic, English, Turkish, mixed RTL/LTR text, emoji, undo, find, and Unicode all behave like a normal macOS editor.
-
-## Features
-
-- Opens into a blank editor (no onboarding)
-- UTF-8 `.txt` (default) and `.md` (source, not preview)
-- Mixed-language and bidirectional text
-- Font and size, find, drag-and-drop, autosave prompts
-- Live word and character counts
+<p align="center">
+  <img src="docs/window.png" alt="Simple Notes main window" width="760">
+</p>
 
 ## Installation
 
 Download **SimpleNotes.dmg** from [Releases](https://github.com/MoomenALdahdouh/SimpleNotes/releases/latest), drag **Simple Notes** into **Applications**, then open it.
 
-If macOS blocks the app (ad-hoc signed, not notarized):
+The distributed build is ad-hoc signed (not notarized). If macOS blocks it:
 
 ```bash
 xattr -d com.apple.quarantine "/Applications/Simple Notes.app"
 open "/Applications/Simple Notes.app"
 ```
 
-Or in Finder: right-click **Simple Notes** → **Open** → **Open**.
+Or right-click the app → **Open** → **Open**.
 
 ## Build from source
 
@@ -59,18 +54,12 @@ cd SimpleNotes
 
 # Run
 open "dist/Simple Notes.app"
-
-# Optional: copy to /Applications
-./build/install.sh
 ```
-
-With Xcode:
 
 ```bash
+# Xcode
 open SimpleNotes.xcodeproj
 ```
-
-Then run the **Simple Notes** scheme.
 
 ## Usage
 
@@ -83,15 +72,11 @@ Then run the **Simple Notes** scheme.
 | Find | ⌘F |
 | Close | ⌘W |
 
-Markdown is edited as text. The first save suggests a timestamp name such as `2026-08-16_13-47-00.txt`.
+UTF-8 `.txt` is the default. Markdown is edited as source, not previewed.
 
 ## Support
 
-If this is useful: [buy me a coffee](https://ko-fi.com/moomenaldahdouh).
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/moomenaldahdouh)
-
-In the app: **Help → Buy Me a Coffee**, or the About window.
+[Buy me a coffee](https://ko-fi.com/moomenaldahdouh) · in the app: **Help → Buy Me a Coffee**
 
 ## License
 
