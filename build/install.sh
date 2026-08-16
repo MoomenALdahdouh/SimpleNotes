@@ -12,5 +12,6 @@ fi
 DEST="/Applications/Simple Notes.app"
 rm -rf "$DEST"
 cp -R "$APP" "$DEST"
+xattr -d com.apple.quarantine "$DEST" 2>/dev/null || true
 echo "Installed to $DEST"
 echo "Launch with: open \"$DEST\""

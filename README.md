@@ -2,84 +2,93 @@
 
 A native macOS text editor. Open, type, save.
 
-## Requirements
+Simple Notes is a small, local, distraction-free writing app for `.txt` and `.md` files. It supports Arabic, English, Turkish, and other Unicode text, including mixed right-to-left and left-to-right documents.
 
-- macOS 14 or later
-- Swift 5.9+ (Xcode 15+ or Command Line Tools)
+**macOS 14 or later.** No account, no cloud, no network.
 
-This project builds with either Xcode or Swift Package Manager. Command Line Tools are enough to compile, test, and package a local app.
+## Install
 
-## How to build
+1. Download **SimpleNotes.dmg** from the [latest release](https://github.com/MoomenALdahdouh/SimpleNotes/releases/latest).
+2. Open the disk image and drag **Simple Notes** into **Applications**.
+3. Open **Simple Notes** from Applications.
 
-Using SwiftPM:
+### If macOS says the app cannot be opened
+
+This build is ad-hoc signed (not notarized with an Apple Developer ID). That is normal for an open-source local app.
+
+**Easiest:** in Finder, right-click **Simple Notes** → **Open** → **Open**.
+
+Or in Terminal:
 
 ```bash
-swift build -c release --product SimpleNotes
+xattr -d com.apple.quarantine "/Applications/Simple Notes.app"
+open "/Applications/Simple Notes.app"
+```
+
+## Use
+
+Launch the app and start typing.
+
+| Action | Shortcut |
+| --- | --- |
+| New | ⌘N |
+| Open | ⌘O |
+| Save | ⌘S |
+| Save As | ⇧⌘S |
+| Find | ⌘F |
+| Close | ⌘W |
+
+Files save as UTF-8 **Plain Text (`.txt`)** or **Markdown (`.md`)**. Markdown is edited as source, not previewed. The first save suggests a timestamp name such as `2026-08-16_13-47-00.txt`.
+
+## Privacy
+
+Everything stays on your Mac. Simple Notes does not use the internet, analytics, accounts, or cloud sync.
+
+## Build from source
+
+You need macOS 14+ and either Xcode or Command Line Tools.
+
+```bash
+git clone https://github.com/MoomenALdahdouh/SimpleNotes.git
+cd SimpleNotes
+./scripts/test.sh
 ./scripts/build.sh
-```
-
-`scripts/build.sh` compiles a Release binary, wraps it as `dist/Simple Notes.app`, and ad-hoc signs it.
-
-Using Xcode (when installed):
-
-```bash
-open SimpleNotes.xcodeproj
-```
-
-Then choose the Simple Notes scheme and Run, or:
-
-```bash
-xcodebuild -project SimpleNotes.xcodeproj -scheme "Simple Notes" -configuration Release
-```
-
-## How to run
-
-```bash
+./scripts/package-dmg.sh
 open "dist/Simple Notes.app"
 ```
 
-Or press Run in Xcode.
+`scripts/build.sh` creates `dist/Simple Notes.app`. `scripts/package-dmg.sh` creates `dist/SimpleNotes.dmg`.
 
-## How to create the DMG
-
-```bash
-./scripts/build.sh
-./scripts/package-dmg.sh
-```
-
-This writes `dist/SimpleNotes.dmg`.
-
-## How to install
-
-Double-click `SimpleNotes.dmg`, drag **Simple Notes** into **Applications**, then open it.
-
-From the command line:
+To install that local build:
 
 ```bash
 ./build/install.sh
 ```
 
-If Gatekeeper blocks a local ad-hoc build:
+If Xcode is installed:
 
 ```bash
-xattr -d com.apple.quarantine "/Applications/Simple Notes.app"
+open SimpleNotes.xcodeproj
 ```
+
+Then run the **Simple Notes** scheme.
 
 ## Tests
 
-Command Line Tools do not include XCTest. Run the bundled checks with:
+Command Line Tools do not include XCTest. Use:
 
 ```bash
 ./scripts/test.sh
 ```
 
-That executes `SimpleNotesChecks`, covering filenames, UTF-8 round-trips (Arabic, English, Turkish, emoji, mixed text), word/character counts, save/open, extensions, and undo/redo.
-
-If Xcode is installed, the `SimpleNotesTests` target in `SimpleNotes.xcodeproj` can also be run from the Test navigator.
+With Xcode, run the **SimpleNotesTests** target from the Test navigator.
 
 ## Known limitations
 
-- There is no Developer ID signature in this tree. A local Release build is ad-hoc signed and runs on the development Mac.
-- Version 1 edits `.txt` and `.md` as plain text. Markdown is not rendered.
-- Very large files (tens of megabytes) remain editable but may feel slower to open or scroll.
-- Replace in Find is the native macOS find bar, not a custom UI.
+- The distributed app is ad-hoc signed, not Developer ID notarized.
+- Markdown is plain text. It is not rendered.
+- Very large files still open, but scrolling can slow down.
+
+## License
+
+MIT. See [LICENSE](LICENSE).

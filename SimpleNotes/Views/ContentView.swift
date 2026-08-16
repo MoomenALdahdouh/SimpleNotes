@@ -6,40 +6,31 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 0) {
             NotesEditor(session: session)
-            Divider()
             StatusBarView(session: session)
         }
         .frame(minWidth: 600, minHeight: 400)
         .background(Color(nsColor: .textBackgroundColor))
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-                Button {
-                    session.newDocument()
-                } label: {
-                    Label("New", systemImage: "square.and.pencil")
+                Button(action: session.newDocument) {
+                    Label("New", systemImage: "plus")
                 }
-                .help("New Document")
+                .help("New")
                 .accessibilityLabel("New document")
 
-                Button {
-                    session.openDocument()
-                } label: {
+                Button(action: session.openDocument) {
                     Label("Open", systemImage: "folder")
                 }
                 .help("Open")
                 .accessibilityLabel("Open file")
 
-                Button {
-                    session.save()
-                } label: {
+                Button(action: { _ = session.save() }) {
                     Label("Save", systemImage: "square.and.arrow.down")
                 }
                 .help("Save")
                 .accessibilityLabel("Save")
 
-                Button {
-                    session.showFontPanel()
-                } label: {
+                Button(action: session.showFontPanel) {
                     Label("Font", systemImage: "textformat")
                 }
                 .help("Font")
@@ -51,11 +42,12 @@ struct ContentView: View {
                     }
                 }
                 .pickerStyle(.menu)
-                .frame(width: 72)
+                .frame(width: 68)
                 .help("Font Size")
                 .accessibilityLabel("Font size")
             }
         }
+        .toolbarRole(.editor)
         .navigationTitle(session.windowTitle)
         .onAppear {
             session.updateCounts()

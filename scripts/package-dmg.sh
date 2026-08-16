@@ -15,6 +15,7 @@ rm -rf "$STAGE"
 mkdir -p "$STAGE"
 cp -R "$APP" "$STAGE/"
 ln -s /Applications "$STAGE/Applications"
+cp "$ROOT/scripts/HowToInstall.txt" "$STAGE/How to Install.txt"
 
 rm -f "$DMG"
 hdiutil create \

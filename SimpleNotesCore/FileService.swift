@@ -88,19 +88,19 @@ public enum FileService: Sendable {
         let nsError = error as NSError
         if nsError.domain == NSCocoaErrorDomain {
             switch nsError.code {
-            case NSFileReadNoPermissionError, NSFileReadNoSuchFileError:
-                if nsError.code == NSFileReadNoPermissionError {
-                    return .permissionDenied
-                }
+            case NSFileReadNoPermissionError:
+                return .permissionDenied
+            case NSFileReadNoSuchFileError, NSFileNoSuchFileError:
                 return .notFound
-            case NSFileNoSuchFileError, NSFileReadInvalidFileNameError:
-                return nsError.code == NSFileReadInvalidFileNameError ? .invalidFilename : .notFound
+            case NSFileReadInvalidFileNameError:
+                return .invalidFilename
             default:
                 break
             }
         }
-        if nsError.domain == NSPOSIXErrorDomain, nsError.code == 13 {
-            return .permissionDenied
+        if nsError.domain == NSPOSIXErrorDomain {
+            if nsError.code == 2 { return .notFound }
+            if nsError.code == 13 { return .permissionDenied }
         }
         return .readFailed(error.localizedDescription)
     }
@@ -115,7 +115,7 @@ public enum FileService: Sendable {
                 return .permissionDenied
             case NSFileWriteInvalidFileNameError:
                 return .invalidFilename
-            case NSFileNoSuchFileError, NSFileWriteOutOfSpaceError:
+            case NSFileNoSuchFileError:
                 return .notFound
             default:
                 break

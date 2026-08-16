@@ -5,11 +5,33 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     var session: DocumentSession?
     private weak var observedWindow: NSWindow?
 
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        applyAppIcon()
+    }
+
     func applicationDidFinishLaunching(_ notification: Notification) {
+        applyAppIcon()
         NSApp.setActivationPolicy(.regular)
         NSApp.activate(ignoringOtherApps: true)
         DispatchQueue.main.async { [weak self] in
             self?.configureMainWindow()
+        }
+    }
+
+    private func applyAppIcon() {
+        let bundled = Bundle.main.url(forResource: "AppIcon", withExtension: "icns")
+            ?? Bundle.main.resourceURL?.appendingPathComponent("AppIcon.icns")
+        if let bundled, let image = NSImage(contentsOf: bundled) {
+            NSApp.applicationIconImage = image
+            return
+        }
+
+        let sourceTree = URL(fileURLWithPath: #file)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Resources/AppIcon.icns")
+        if let image = NSImage(contentsOf: sourceTree) {
+            NSApp.applicationIconImage = image
         }
     }
 
@@ -50,6 +72,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         }
 
         window.minSize = NSSize(width: 600, height: 400)
+        window.titlebarSeparatorStyle = .line
+        window.toolbarStyle = .unifiedCompact
         window.setFrameAutosaveName("SimpleNotesMainWindow")
         if !window.setFrameUsingName("SimpleNotesMainWindow") {
             var frame = window.frame

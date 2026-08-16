@@ -29,7 +29,8 @@ let package = Package(
             exclude: [
                 "Resources/Info.plist",
                 "Resources/SimpleNotes.entitlements",
-                "Resources/AppIcon.icns"
+                "Resources/AppIcon.icns",
+                "Resources/AppIcon-1024.png"
             ],
             swiftSettings: swiftSettings
         ),

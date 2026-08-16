@@ -102,8 +102,14 @@ struct AppCommands: Commands {
             .keyboardShortcut("0", modifiers: .command)
         }
 
-        CommandGroup(replacing: .help) {
+        CommandGroup(replacing: .appInfo) {
             Button("About Simple Notes") {
+                openWindow(id: "about")
+            }
+        }
+
+        CommandGroup(replacing: .help) {
+            Button("Simple Notes Help") {
                 openWindow(id: "about")
             }
         }

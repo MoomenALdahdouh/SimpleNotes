@@ -5,4 +5,6 @@ xcuserdata/
 *.xcuserstate
 build/dmg/
 build/icon.iconset/
+build/*.png
+dist/
 .DS_Store

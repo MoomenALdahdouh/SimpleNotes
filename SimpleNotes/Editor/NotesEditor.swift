@@ -43,8 +43,8 @@ struct NotesEditor: NSViewRepresentable {
             Alerts.unsupportedFileType()
         }
 
+        textView.layoutManager?.allowsNonContiguousLayout = true
         scrollView.documentView = textView
-        context.coordinator.scrollView = scrollView
         session.attach(textView: textView)
 
         DispatchQueue.main.async {
@@ -74,7 +74,6 @@ struct NotesEditor: NSViewRepresentable {
 
     final class Coordinator: NSObject, NSTextViewDelegate {
         var session: DocumentSession
-        weak var scrollView: NSScrollView?
 
         init(session: DocumentSession) {
             self.session = session
@@ -82,10 +81,6 @@ struct NotesEditor: NSViewRepresentable {
 
         func textDidChange(_ notification: Notification) {
             session.markEdited()
-        }
-
-        func textView(_ textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
-            false
         }
     }
 }

@@ -1,0 +1,21 @@
+Simple Notes
+============
+
+Install
+
+1. Drag "Simple Notes" onto the Applications folder.
+2. Open Applications and double-click Simple Notes.
+
+If macOS blocks the app
+-----------------------
+
+This build is not notarized with Apple.
+
+In Finder: right-click Simple Notes → Open → Open.
+
+Or in Terminal:
+
+  xattr -d com.apple.quarantine "/Applications/Simple Notes.app"
+  open "/Applications/Simple Notes.app"
+
+Simple Notes is a local text editor. It does not use the internet.

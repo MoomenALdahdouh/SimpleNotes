@@ -20,6 +20,10 @@ mkdir -p "$APP_DIR/Contents/Resources"
 cp "$BIN" "$APP_DIR/Contents/MacOS/SimpleNotes"
 cp "$ROOT/SimpleNotes/Resources/Info.plist" "$APP_DIR/Contents/Info.plist"
 cp "$ROOT/SimpleNotes/Resources/AppIcon.icns" "$APP_DIR/Contents/Resources/AppIcon.icns"
+# Some Finder versions resolve the icon more reliably with the .icns suffix in the plist copy.
+/usr/libexec/PlistBuddy -c 'Set :CFBundleIconFile AppIcon' "$APP_DIR/Contents/Info.plist" >/dev/null 2>&1 || true
+/usr/libexec/PlistBuddy -c 'Add :CFBundleIconName string AppIcon' "$APP_DIR/Contents/Info.plist" >/dev/null 2>&1 || \
+  /usr/libexec/PlistBuddy -c 'Set :CFBundleIconName AppIcon' "$APP_DIR/Contents/Info.plist" >/dev/null 2>&1 || true
 printf 'APPL????' > "$APP_DIR/Contents/PkgInfo"
 
 # Copy SwiftPM resource bundle if the build produced one.
