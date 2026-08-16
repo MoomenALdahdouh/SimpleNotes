@@ -6,6 +6,13 @@ Simple Notes is a small, local, distraction-free writing app for `.txt` and `.md
 
 **macOS 14 or later.** No account, no cloud, no network.
 
+<p align="center">
+  <img src="docs/window.png" alt="Simple Notes main window with mixed Arabic, English, and Turkish text" width="800">
+</p>
+
+<p align="center"><em>The real main window: type, save as TXT or Markdown, with a live word count.</em></p>
+
+
 ## Install
 
 1. Download **SimpleNotes.dmg** from the [latest release](https://github.com/MoomenALdahdouh/SimpleNotes/releases/latest).
