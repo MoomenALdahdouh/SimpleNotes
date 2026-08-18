@@ -29,5 +29,11 @@ struct SimpleNotesApp: App {
         .windowResizability(.contentSize)
         .defaultSize(width: 360, height: 268)
         .windowStyle(.hiddenTitleBar)
+
+        Window("Scan Note", id: "qr") {
+            QRCodeShareView(session: session)
+        }
+        .windowResizability(.contentMinSize)
+        .defaultSize(width: 520, height: 640)
     }
 }

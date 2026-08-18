@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     var session: DocumentSession
+    @Environment(\.openWindow) private var openWindow
 
     var body: some View {
         VStack(spacing: 0) {
@@ -29,6 +30,12 @@ struct ContentView: View {
                 }
                 .help("Save")
                 .accessibilityLabel("Save")
+
+                Button(action: { openWindow(id: "qr") }) {
+                    Label("QR Code", systemImage: "qrcode")
+                }
+                .help("Show a QR code so you can scan this note on your phone")
+                .accessibilityLabel("Show QR code")
 
                 Button(action: session.showFontPanel) {
                     Label("Font", systemImage: "textformat")

@@ -18,7 +18,7 @@ Native macOS text editor. Open, type, save.
 
 ## Overview
 
-Simple Notes is a distraction-free editor for `.txt` and `.md` files, built with Swift, SwiftUI, and AppKit. It opens into a blank `NSTextView` so you can type immediately. Arabic, English, Turkish, mixed RTL/LTR, and other Unicode text use macOS layout. No accounts, ads, telemetry, or network requirement at runtime.
+Simple Notes is a distraction-free editor for `.txt` and `.md` files, built with Swift, SwiftUI, and AppKit. It opens into a blank `NSTextView` so you can type immediately. Arabic, English, Turkish, mixed RTL/LTR, and other Unicode text use macOS layout. No accounts, ads, telemetry, or network requirement at runtime. A QR code can put the current note on your phone so you can paste it into any notes app.
 
 <p align="center">
   <img src="docs/window.png" alt="Simple Notes main window" width="760">
@@ -70,9 +70,12 @@ open SimpleNotes.xcodeproj
 | Save | ⌘S |
 | Save As | ⇧⌘S |
 | Find | ⌘F |
+| Show QR Code | toolbar or **File → Show QR Code** |
 | Close | ⌘W |
 
 UTF-8 `.txt` is the default. Markdown is edited as source, not previewed.
+
+**Phone:** click the QR toolbar button to open a large scannable code of the current note. Point your camera at it, then copy or share the text into Google Keep, Samsung Notes, or any other notes app. Very long notes may not fit in one code; use **Copy Text** in that window instead.
 
 ## Support
 

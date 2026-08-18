@@ -63,6 +63,30 @@ struct SimpleNotesChecks {
         expectEqual(WordCounter.characterCount(in: "Hello 👋"), 7)
         expectEqual(WordCounter.wordCount(in: "Hello, world!"), 2)
 
+        // QR share payload for phone cameras
+        expectEqual(QRSharePayload.prepare(""), QRSharePayload.Status.empty)
+        expectEqual(QRSharePayload.prepare("   \n"), QRSharePayload.Status.empty)
+        if case .ready(let ascii) = QRSharePayload.prepare("Hello from Simple Notes") {
+            expect(!ascii.starts(with: [0xEF, 0xBB, 0xBF]), "ASCII QR payload must not include a BOM")
+            expectEqual(QRSharePayload.decodedText(from: ascii), "Hello from Simple Notes")
+        } else {
+            expect(false, "ASCII note should encode as a QR payload")
+        }
+        let mixedNote = "مرحبا بالعالم Hello Merhaba Dünya"
+        if case .ready(let unicode) = QRSharePayload.prepare(mixedNote) {
+            expect(unicode.starts(with: [0xEF, 0xBB, 0xBF]), "Unicode QR payload should include a UTF-8 BOM")
+            expectEqual(QRSharePayload.decodedText(from: unicode), mixedNote)
+        } else {
+            expect(false, "Unicode note should encode as a QR payload")
+        }
+        let oversized = String(repeating: "a", count: QRSharePayload.maxByteCount + 1)
+        if case .tooLong(let byteCount, let limit) = QRSharePayload.prepare(oversized) {
+            expectEqual(byteCount, QRSharePayload.maxByteCount + 1)
+            expectEqual(limit, QRSharePayload.maxByteCount)
+        } else {
+            expect(false, "oversized note should be rejected")
+        }
+
         func roundTrip(_ text: String, ext: String = "txt") throws {
             let url = FileManager.default.temporaryDirectory.appendingPathComponent("sn-\(UUID().uuidString).\(ext)")
             defer { try? FileManager.default.removeItem(at: url) }

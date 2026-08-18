@@ -30,6 +30,12 @@ struct AppCommands: Commands {
 
             Divider()
 
+            Button("Show QR Code") {
+                openWindow(id: "qr")
+            }
+
+            Divider()
+
             Button("Close") {
                 NSApp.keyWindow?.performClose(nil)
             }
